@@ -1,0 +1,11 @@
+# Ignore everything by default
+*
+
+# But don't ignore these directories and their contents
+!docs/
+!docs/**
+!docs2/
+!docs2/**
+
+# Don't ignore .gitignore itself
+!.gitignore
