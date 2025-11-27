@@ -103,7 +103,7 @@ claude mcp add claude-flow npx claude-flow@alpha mcp start
 # This enables symbol-level code navigation
 claude mcp add serena uvx --from git+https://github.com/oraios/serena serena start-mcp-server
 
-# Optional: Enhanced coordination features
+# Add ruv-swarm (RECOMMENDED for enhanced coordination)
 claude mcp add ruv-swarm npx ruv-swarm mcp start
 
 # Optional: Cloud-based features
@@ -111,6 +111,65 @@ claude mcp add flow-nexus npx flow-nexus@latest mcp start
 ```
 
 **Note:** The MCP servers provide the runtime execution environment, while this repository provides the pre-configured agents, workflows, and documentation.
+
+### Verify and Initialize Systems
+
+After adding MCP servers, you need to ensure all systems are properly initialized and working:
+
+#### Step 1: Ask Claude Code to Setup Core Systems
+
+In Claude Code, prompt:
+
+```
+"Please ensure all MCP systems are properly configured:
+
+1. Verify Serena MCP is working correctly and can access language servers
+2. Initialize AgentDB for vector-based memory storage
+3. Verify the memory coordination system is fully functional
+4. Confirm all MCP servers (claude-flow, ruv-swarm, serena) are connected
+
+Please run any necessary setup commands and verify everything is operational."
+```
+
+Claude Code will:
+- Check Serena MCP configuration and language server availability
+- Initialize AgentDB vector database for agent memory
+- Set up memory namespaces and coordination
+- Verify MCP server connections
+- Run any required initialization commands
+
+#### Step 2: Verify MCP Server Status
+
+After Claude Code completes the setup, **open a new terminal** and verify:
+
+```bash
+# Check MCP server status in Claude Code
+/mcp
+```
+
+You should see these servers **connected and working**:
+- ✅ **claude-flow** - Multi-agent orchestration
+- ✅ **ruv-swarm** - Enhanced coordination features
+- ✅ **serena** - Semantic code analysis
+
+If any server shows as disconnected or has errors, ask Claude Code to troubleshoot:
+
+```
+"The [SERVER_NAME] MCP server is not connected. Please diagnose and fix the issue."
+```
+
+#### Step 3: Test the Systems
+
+Verify everything works with a simple test:
+
+```
+"Please test the following systems:
+1. AgentDB vector storage - store and retrieve a test memory
+2. Serena MCP - analyze a simple code file using symbol tools
+3. Claude Flow memory coordination - verify memory namespaces
+
+Confirm all systems are operational."
+```
 
 ---
 
@@ -901,6 +960,72 @@ security/remediation/priorities
 ---
 
 ## 🔧 Troubleshooting
+
+### Issue: MCP Servers Not Connected
+
+**Problem:** MCP servers show as disconnected when running `/mcp` command
+
+**Solution:**
+```bash
+# Step 1: Check MCP server status
+/mcp
+
+# Step 2: If servers are disconnected, ask Claude Code:
+"Please check why the [SERVER_NAME] MCP server is disconnected and reconnect it."
+
+# Step 3: Verify MCP configuration
+cat ~/.config/claude/mcp.json
+
+# Step 4: Restart Claude Code if needed
+# Close and reopen Claude Code, then verify with /mcp
+```
+
+**Common causes:**
+- MCP server process crashed
+- Incorrect server command in configuration
+- Missing dependencies (UV for Serena, Node.js for Claude Flow)
+- Firewall blocking local connections
+
+### Issue: AgentDB Not Initialized
+
+**Problem:** Memory storage or AgentDB vector database not working
+
+**Solution:**
+```
+Ask Claude Code:
+
+"Please initialize AgentDB and verify the memory system:
+1. Check if .agentdb/ directory exists
+2. Initialize AgentDB vector storage
+3. Test storing and retrieving a sample memory
+4. Verify all memory namespaces are accessible
+
+Show me the results of each step."
+```
+
+### Issue: Serena Language Servers Not Working
+
+**Problem:** Serena can't analyze code or symbol tools fail
+
+**Solution:**
+```
+Ask Claude Code:
+
+"Please verify Serena MCP is properly configured:
+1. Check Serena MCP server connection
+2. Verify language server availability for [LANGUAGE]
+3. Test symbol analysis on a sample file
+4. Initialize any missing language servers
+
+Report any errors and fix them."
+```
+
+**Common languages and their servers:**
+- Python: pyright or jedi-language-server
+- JavaScript/TypeScript: typescript-language-server
+- Go: gopls
+- Rust: rust-analyzer
+- Java: eclipse-jdt-ls
 
 ### Issue: Agents Not Found
 
