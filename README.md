@@ -8,6 +8,20 @@
 
 ---
 
+## 🙏 Credits
+
+This blueprint is built on top of **[Claude Flow](https://github.com/ruvnet/claude-flow)** by **[Rueven Cohen (@ruvnet)](https://github.com/ruvnet)** - an innovative multi-agent orchestration framework that enables sophisticated AI-powered development workflows.
+
+**Original Claude Flow Repository:** https://github.com/ruvnet/claude-flow
+
+This repository extends Claude Flow with:
+- Pre-configured specialized agent systems
+- Universal Search Algorithm (USACF) framework
+- Serena MCP integration
+- Production-ready workflows and documentation
+
+---
+
 ## 📋 Table of Contents
 
 - [Overview](#-overview)
@@ -49,45 +63,54 @@ This repository provides a **production-ready blueprint** for building sophistic
 
 ## 🚀 Quick Start
 
-### Prerequisites
+### Clone This Blueprint
+
+This repository is a **ready-to-use blueprint** with all agents and configurations pre-configured. Simply clone and start using:
 
 ```bash
-# Install Claude Code CLI
+# Clone this blueprint repository
+git clone https://github.com/ChrisRoyse/myclaudeflowsetup.git
+cd myclaudeflowsetup
+
+# Verify all agents are available
+ls -la .claude/agents/
+
+# You're ready to go! All 54+ agents are pre-configured
+```
+
+### Prerequisites
+
+While this repository contains all the Claude Flow configurations, you'll need:
+
+```bash
+# Claude Code CLI (required)
 npm install -g @anthropics/claude-code
 
-# Install Claude Flow (required)
-npm install -g claude-flow@alpha
-
-# Install UV (for Serena)
+# UV (required for Serena MCP)
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
 ### Setup MCP Servers
 
+Configure the MCP servers to work with this blueprint:
+
 ```bash
 # Add Claude Flow MCP (REQUIRED)
+# This enables multi-agent orchestration
 claude mcp add claude-flow npx claude-flow@alpha mcp start
 
 # Add Serena MCP (REQUIRED for code analysis)
+# This enables symbol-level code navigation
 claude mcp add serena uvx --from git+https://github.com/oraios/serena serena start-mcp-server
 
-# Optional: Enhanced coordination
+# Optional: Enhanced coordination features
 claude mcp add ruv-swarm npx ruv-swarm mcp start
 
-# Optional: Cloud features
+# Optional: Cloud-based features
 claude mcp add flow-nexus npx flow-nexus@latest mcp start
 ```
 
-### Clone and Setup
-
-```bash
-# Clone repository
-git clone https://github.com/ChrisRoyse/myclaudeflowsetup.git
-cd myclaudeflowsetup
-
-# Verify structure
-ls -la .claude/agents/
-```
+**Note:** The MCP servers provide the runtime execution environment, while this repository provides the pre-configured agents, workflows, and documentation.
 
 ---
 
@@ -984,7 +1007,10 @@ npx claude-flow memory retrieve --key "session/context/current-state"
 
 ### Official Documentation
 
-- **Claude Flow:** [GitHub](https://github.com/ruvnet/claude-flow)
+- **Claude Flow (Original):** [GitHub](https://github.com/ruvnet/claude-flow) by [@ruvnet](https://github.com/ruvnet)
+  - Original multi-agent orchestration framework
+  - Comprehensive documentation and examples
+  - Active development and community support
 - **Serena MCP:** [GitHub](https://github.com/oraios/serena) | [Docs](https://oraios.github.io/serena/)
 - **Claude Code:** [Anthropic Docs](https://claude.com/claude-code)
 
@@ -1014,10 +1040,25 @@ This blueprint is provided as-is for educational and development purposes. Indiv
 
 ## 🙏 Acknowledgments
 
-- **Claude Flow Team** - Multi-agent orchestration framework
-- **Serena/Oraios Team** - Semantic code analysis tools
-- **Anthropic** - Claude Code and Claude API
-- **Open Source Community** - Language server implementations
+### Primary Attribution
+
+This blueprint is built upon **[Claude Flow](https://github.com/ruvnet/claude-flow)** created by **Rueven Cohen ([@ruvnet](https://github.com/ruvnet))**.
+
+Claude Flow is an innovative multi-agent orchestration framework that revolutionizes AI-powered development through:
+- Hierarchical swarm coordination
+- Memory-based agent communication
+- Neural pattern learning
+- Performance optimization (2.8-4.4x improvements)
+- 84.8% SWE-Bench solve rate
+
+**Original Repository:** https://github.com/ruvnet/claude-flow
+**Creator:** Rueven Cohen - [@ruvnet](https://github.com/ruvnet)
+
+### Additional Technologies
+
+- **Serena/Oraios Team** - Semantic code analysis MCP server with LSP integration
+- **Anthropic** - Claude Code CLI and Claude API
+- **Open Source Community** - Language server implementations and contributions
 
 ---
 
